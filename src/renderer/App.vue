@@ -20,7 +20,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   *{
     margin:0px;
     padding:0px;
@@ -54,5 +54,46 @@
   }
   .rightside {
     width: 100%;
+  }
+  .close {
+    display: inline-block;
+    margin: 0 auto;
+    height: .25rem;
+    width: .25rem;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    &:hover {
+      opacity: .8;
+    }
+    &::before {
+      content: "\2716";
+    }
+  }
+  .hr--white {
+    margin: .2rem auto;
+    border: 0;
+    height: .01rem;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.75), rgba(255,255,255,1), rgba(255,255,255,0.75));
+    width: 80%;
+  }
+  .btn {
+    margin: .1rem;
+    width: .90rem;
+    height: .30rem;
+    border: none;
+    border-radius: .20rem;
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--blue {
+      background-color: #4971FF;
+      color: #FFFFFF;
+    }
+    &--white {
+      border: .01rem solid #4971FF;
+      background-color: #FFFFFF;
+      color: #4971FF;
+    }
   }
 </style>

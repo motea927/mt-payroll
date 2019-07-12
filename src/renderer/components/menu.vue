@@ -4,6 +4,8 @@
       <img src="../assets/cbmy1-idemm.png" alt="menu__logo">
       <h1 class="menu__logo__title">薪資系統</h1>
 	  </div>
+    <h2>{{ currentDate }}</h2>
+    <hr class="hr--white">
     <div class="menu--btn">
       <p>概況</p>
     </div>
@@ -16,7 +18,18 @@
   </div>
 </template>
 <script>
+import bus from '../eventBus'
 export default {
+  mounted () {
+    bus.$on('changedCurrentDate', (date) => {
+      this.currentDate = date
+    })
+  },
+  data () {
+    return {
+      currentDate: null
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -58,6 +71,9 @@ export default {
         background-color: rgb(73, 111, 255);
       }
 		}
+  }
+  h2 {
+    font-size: .20rem;
   }
 </style>
 
