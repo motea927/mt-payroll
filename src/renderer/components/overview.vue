@@ -9,6 +9,7 @@
     <v-table
             is-horizontal-resize
             is-vertical-resize
+            even-bg-color="#f2f2f2"
             :vertical-resize-offset='10'
             style="width:80%; margin: .2rem auto;"
             :columns="columns"
@@ -28,7 +29,7 @@ import store from '../electronStore'
 export default {
   mounted () {
     const database = store.get('database')
-    // console.log(database)
+
     if (!database || Object.keys(database).length === 0) {
       this.noDataAlert()
       return
@@ -39,6 +40,14 @@ export default {
         'delete': '',
         'save': ''
       })
+    }
+    if (this.$route.params.date) {
+      const routeDate = this.$route.params.date
+      for (let i = 0; i < this.tableData.length; i++) {
+        if (this.tableData[i].date === routeDate) {
+          this.currentDateIndex = i
+        }
+      }
     }
     this.emitChangedDate()
   },
@@ -63,16 +72,20 @@ export default {
   },
   methods: {
     async addDate () {
+      const date = await this.$swal('請輸入年-月 如:2019-06', {content: 'input'})
       if (this.tableData.length !== 0) {
         this.currentDateIndex += 1
+        let datakeyin = []
+        datakeyin = store.get(`database.${this.tableData[0].date}.datakeyin`)
+        store.set(`database.${date}`, {datakeyin: datakeyin})
+      } else {
+        store.set(`database.${date}`, {datakeyin: []})
       }
-      const date = await this.$swal('請輸入年-月 如:2019-06', {content: 'input'})
       this.tableData.unshift({
         'date': date,
         'delete': '',
         'save': ''
       })
-      store.set(`database.${date}`, {datakeyin: []})
       this.emitChangedDate()
     },
     noDataAlert () {
@@ -130,9 +143,10 @@ Vue.component('table-delete', {
 
 <style lang="scss">
   .overview {
+    // overflow: scroll;
     background-color: #FFFFFF;
     font-size: .17rem;
-    height: 100%;
+    height: calc(100% - .2rem);
     &__titlebar {
       display: flex;
       align-items: center;

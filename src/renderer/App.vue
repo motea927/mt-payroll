@@ -29,7 +29,7 @@
     -moz-box-sizing:border-box;
     -o-box-sizing:border-box;
     -ms-box-sizing:border-box;
-    overflow: hidden;
+    overflow: visible;
   }
   html, body {
     width: 100%;
@@ -46,14 +46,15 @@
   }
   main {
     display: flex;
-    height: 100vh;
+    min-height: calc(100vh - .3rem);
+    background-color: #ffffff;
     /*justify-content: space-between;*/
   }
   .leftside {
     width: 1.7rem;
   }
   .rightside {
-    width: 100%;
+    width: calc(100% - 1.7rem);
   }
   .close {
     display: inline-block;

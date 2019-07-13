@@ -4,15 +4,15 @@
       <h1 class="datakeyin__titlebar__text">資料輸入</h1>
       <button class="btn btn--blue" @click="addMember">新增員工 +</button>
       <button class="btn btn--white" @click="addColumns">新增欄位 +</button>
-      <button class="btn btn--white">新增欄位 +</button>
       <p>員工數: {{ tableData.length }}</p>
     </div>
     <hr>
     <v-table
             is-horizontal-resize
             is-vertical-resize
-            :vertical-resize-offset='10'
-            style="width:95%; margin: .2rem auto;"
+            even-bg-color="#f2f2f2"
+            :vertical-resize-offset='30'
+            style="width:95%; margin: .3rem auto;"
             :columns="columns"
             :table-data="tableData"
             row-hover-color="#eee"
@@ -160,7 +160,7 @@ export default {
         {field: '應到天數', title: '應到天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '加班天數(外勞)', title: '加班天數(外勞)', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '加班1.33時數', title: '加班1.33時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '加班1.66時數', title: '加班1.66時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
+        {field: '加班1.67時數', title: '加班1.67時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '全勤獎金', title: '全勤獎金', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '伙食天數', title: '伙食天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '交通天數', title: '交通天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
@@ -248,7 +248,7 @@ Vue.component('table-commit', {
   .datakeyin {
     background-color: #FFFFFF;
     font-size: .17rem;
-    height: 100%;
+    height: calc(100% - .7rem);
     &__titlebar {
       display: flex;
       align-items: center;
@@ -258,9 +258,6 @@ Vue.component('table-commit', {
         margin-right: .2rem;
       }
     }
-  }
-  .v-table-sort-icon {
-    margin-top: -.2rem;
   }
   .custom-columns {
     color: #4971FF;

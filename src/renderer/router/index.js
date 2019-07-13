@@ -15,12 +15,20 @@ export default new Router({
       component: require('@/components/overview').default
     },
     {
+      path: '/:date',
+      component: require('@/components/overview').default
+    },
+    {
       path: '*',
       redirect: '/'
     },
     {
       path: '/datakeyin/:date',
       component: require('@/components/datakeyin').default
+    },
+    {
+      path: '/payroll/:date',
+      component: require('@/components/payroll').default
     }
   ]
 })

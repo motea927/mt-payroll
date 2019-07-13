@@ -7,7 +7,7 @@
     <h2>{{ currentDate }}</h2>
     <hr class="hr--white">
     
-    <router-link to="/">
+    <router-link :to="{path: '/' + currentDate}">
       <div class="menu--btn">
         <p>概況</p>
       </div>
@@ -19,7 +19,7 @@
     </div>
     </router-link>
 
-    <router-link to="/">
+    <router-link :to="{path: '/payroll/' + currentDate}">
     <div class="menu--btn">
       <p>薪資條</p>
     </div>
