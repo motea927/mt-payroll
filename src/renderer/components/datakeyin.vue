@@ -4,6 +4,7 @@
       <h1 class="datakeyin__titlebar__text">資料輸入</h1>
       <button class="btn btn--blue" @click="addMember">新增員工 +</button>
       <button class="btn btn--white" @click="addColumns">新增欄位 +</button>
+      <button class="btn btn--white">新增欄位 +</button>
       <p>員工數: {{ tableData.length }}</p>
     </div>
     <hr>
@@ -120,6 +121,11 @@ export default {
           this.tableData.splice(params.index + 1, 0, temp)
           this.autoSave()
         }
+      } else if (params.type === 'save') {
+        this.tableData[params.index]['備註'] = params.commit
+        console.log(this.tableData[params.index])
+        console.log(params)
+        this.autoSave()
       }
     },
     cellEditDone (newValue, oldValue, rowIndex, rowData, field) {
@@ -164,7 +170,7 @@ export default {
         {field: '勞保費', title: '勞保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '健保費', title: '健保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '仲介費', title: '仲介費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '備註', title: '備註', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true}
+        {field: '備註', title: '備註', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, componentName: 'table-commit'}
       ],
       date: 'null'
     }
@@ -193,6 +199,45 @@ Vue.component('table-operation', {
     },
     sort (direction) {
       let params = {type: 'sort', index: this.index, direction: direction}
+      this.$emit('on-custom-comp', params)
+    }
+  }
+})
+Vue.component('table-commit', {
+  template: `<div @click="commit" style="width: .8rem;margin: 0;height:.4rem"> {{rowData.備註}}</div>`,
+  props: {
+    rowData: {
+      type: Object
+    },
+    index: {
+      type: Number
+    }
+  },
+  data () {
+    return {
+      gg: '1234你說藍色是你最愛的顏色'
+    }
+  },
+  methods: {
+    async commit (personName) {
+      let wrapper = document.createElement('div')
+      let commitMessage = this.rowData.備註
+      let CommitComponent = Vue.extend({
+        data () {
+          return {
+            commit: commitMessage.toString()
+          }
+        },
+        watch: {
+          commit (newVal) { commitMessage = newVal }
+        },
+        template: `
+        <textarea cols="20" rows="15" v-model="commit" style="font-size: .3rem;">{{ commit }}</textarea>`
+      })
+      let component = new CommitComponent().$mount(wrapper)
+      await this.$swal({content: component.$el})
+      this.rowData.備註 = commitMessage
+      let params = {type: 'save', index: this.index, commit: this.rowData.備註}
       this.$emit('on-custom-comp', params)
     }
   }
