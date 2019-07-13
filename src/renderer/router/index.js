@@ -17,6 +17,10 @@ export default new Router({
     {
       path: '*',
       redirect: '/'
+    },
+    {
+      path: '/datakeyin/:date',
+      component: require('@/components/datakeyin').default
     }
   ]
 })

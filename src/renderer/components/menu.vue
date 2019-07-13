@@ -6,15 +6,24 @@
 	  </div>
     <h2>{{ currentDate }}</h2>
     <hr class="hr--white">
-    <div class="menu--btn">
-      <p>概況</p>
-    </div>
+    
+    <router-link to="/">
+      <div class="menu--btn">
+        <p>概況</p>
+      </div>
+    </router-link>
+
+    <router-link :to="{path: '/datakeyin/' + currentDate}">
     <div class="menu--btn">
       <p>資料輸入</p>
     </div>
+    </router-link>
+
+    <router-link to="/">
     <div class="menu--btn">
       <p>薪資條</p>
     </div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -62,7 +71,7 @@ export default {
 		  color: rgb(120, 120, 120);
 			padding: .1rem .1rem .1rem .2rem;
       margin: 0;
-      width: 90%;
+      width: 100%;
       text-align: left;
 
       &:hover {
@@ -71,6 +80,11 @@ export default {
         background-color: rgb(73, 111, 255);
       }
 		}
+    & a {
+      text-decoration: none;
+      display: block;
+      width: 90%;
+    }
   }
   h2 {
     font-size: .20rem;

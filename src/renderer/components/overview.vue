@@ -8,6 +8,8 @@
     <hr>
     <v-table
             is-horizontal-resize
+            is-vertical-resize
+            :vertical-resize-offset='10'
             style="width:80%; margin: .2rem auto;"
             :columns="columns"
             :table-data="tableData"
@@ -70,7 +72,7 @@ export default {
         'delete': '',
         'save': ''
       })
-      store.set(`database.${date}`, {})
+      store.set(`database.${date}`, {datakeyin: []})
       this.emitChangedDate()
     },
     noDataAlert () {
@@ -88,6 +90,7 @@ export default {
       if (this.tableData.length === 0) {
         bus.$emit('changedCurrentDate', null)
         this.noDataAlert()
+        return
       }
       bus.$emit('changedCurrentDate', this.tableData[this.currentDateIndex].date)
     },
@@ -137,9 +140,6 @@ Vue.component('table-delete', {
       margin: .2rem;
       &__text {
         margin-right: .2rem;
-      }
-      & button {
-        
       }
     }
   }
