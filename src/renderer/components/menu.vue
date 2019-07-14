@@ -1,11 +1,11 @@
 <template>
   <div class="menu">
     <div class="menu__logo">
-      <img src="../assets/cbmy1-idemm.png" alt="menu__logo">
+      
       <h1 class="menu__logo__title">薪資系統</h1>
 	  </div>
+    <img src="../assets/—Pngtree—flowers and butterflies_3412191.png" alt="" style="height: auto;width: 1.4rem;margin: .1rem auto;">
     <h2>{{ currentDate }}</h2>
-    <hr class="hr--white">
     
     <router-link :to="{path: '/' + currentDate}">
       <div class="menu--btn">
@@ -43,8 +43,8 @@ export default {
 </script>
 <style lang="scss">
   .menu {
-    background-color: rgb(51, 51, 51);
-    color: white;
+    background-color: #2B343B;
+    color: rgb(149, 154, 157);
     height: 100%;
 		width: 100%;
     display: flex;
@@ -59,7 +59,7 @@ export default {
       justify-content: center;
       margin: .2rem auto;
       &__title {
-        font-size: .2rem;
+        font-size: .3rem;
         margin-left: .1rem;
       }
       & img {
@@ -75,9 +75,9 @@ export default {
       text-align: left;
 
       &:hover {
-        color: white;
+        color: #333;
         opacity: .95;
-        background-color: rgb(73, 111, 255);
+        background-color: #ACC1D2;
       }
 		}
     & a {
@@ -85,9 +85,10 @@ export default {
       display: block;
       width: 90%;
     }
-  }
-  h2 {
-    font-size: .20rem;
+    & h2 {
+      font-size: .25rem;
+      margin: .2rem auto;
+    }
   }
 </style>
 

@@ -4,7 +4,7 @@
       <h1 class="overview__titlebar__text">薪資條</h1>
       <button class="btn btn--white" @click="print">列印</button>
     </div>
-    <hr>
+    <hr class="hr--one">
     <div class="payroll--container" id="print-rayroll">
       <div class="payroll" v-for="tableData in tableDatas">
         <div class="payroll__title">
@@ -158,11 +158,12 @@ export default {
     },
     async print () {
       const ipc = require('electron').ipcRenderer
-      ipc.on('wrote-pdf', function (event, path) {
-        const message = `PDF 保存到: ${path}`
-        alert(message)
+      ipc.on('wrote-pdf', (event, path) => {
+        this.$swal('存檔成功', `存檔路徑為: ${path}`, 'success')
+        console.log(path)
       })
-      ipc.send('print-to-pdf')
+      ipc.send('print-to-pdf', this.$route.params.date)
+      // ipc.send('select-path')
     }
   },
   computed: {

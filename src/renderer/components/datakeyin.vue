@@ -6,7 +6,7 @@
       <button class="btn btn--white" @click="addColumns">新增欄位 +</button>
       <p>員工數: {{ tableData.length }}</p>
     </div>
-    <hr>
+    <hr class="hr--one">
     <v-table
             is-horizontal-resize
             is-vertical-resize
@@ -249,6 +249,7 @@ Vue.component('table-commit', {
     background-color: #FFFFFF;
     font-size: .17rem;
     height: calc(100% - .7rem);
+    color: #2B343B;
     &__titlebar {
       display: flex;
       align-items: center;
@@ -260,7 +261,7 @@ Vue.component('table-commit', {
     }
   }
   .custom-columns {
-    color: #4971FF;
+    color: #ED7B7B;
     cursor: pointer;
   }
 </style>

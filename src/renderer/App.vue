@@ -40,9 +40,13 @@
   }
   h1 {
     font-size: .4rem;
+    font-weight: 200;
+  }
+  h2 {
+    font-weight: 200;
   }
   p {
-    font-size: .16rem;
+    font-size: .19rem;
   }
   main {
     display: flex;
@@ -70,31 +74,40 @@
       content: "\2716";
     }
   }
-  .hr--white {
-    margin: .2rem auto;
-    border: 0;
-    height: .01rem;
-    background-image: linear-gradient(to right, rgba(255,255,255,0.75), rgba(255,255,255,1), rgba(255,255,255,0.75));
-    width: 80%;
-  }
   .btn {
     margin: .1rem;
     width: .90rem;
     height: .30rem;
     border: none;
     border-radius: .20rem;
+    font-size: .15rem;
     &:hover {
       cursor: pointer;
     }
 
     &--blue {
-      background-color: #4971FF;
-      color: #FFFFFF;
+      
+      background-color: #758293;
+      color: #FFF;
+      &:hover {
+        opacity: .95;
+      }
     }
     &--white {
-      border: .01rem solid #4971FF;
+      border: .01rem solid #ACC1D2;
       background-color: #FFFFFF;
-      color: #4971FF;
+      color: rgb(112, 122, 131);
+      &:hover {
+        opacity: .9;
+      }
+    }
+  }
+  .hr {
+    &--one {
+      border: 0;
+      height: 1px;
+      background: rgba(112, 122, 131, .2);
+      background-image: linear-gradient(to right, #ccc, rgba(112, 122, 131, .2), #ccc);
     }
   }
 </style>

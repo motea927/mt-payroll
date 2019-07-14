@@ -5,7 +5,7 @@
       <button class="btn btn--blue" @click="addDate">新增年月 +</button>
       <button class="btn btn--white" @click="clearAllData">清除所有</button>
     </div>
-    <hr>
+    <hr class="hr--one">
     <v-table
             is-horizontal-resize
             is-vertical-resize
@@ -144,6 +144,7 @@ Vue.component('table-delete', {
 <style lang="scss">
   .overview {
     // overflow: scroll;
+    color: #2B343B;
     background-color: #FFFFFF;
     font-size: .17rem;
     height: calc(100% - .2rem);
@@ -162,7 +163,7 @@ Vue.component('table-delete', {
     margin-left: -.25rem;
     height: .25rem;
     width: .25rem; 
-    color: #4971FF;
+    color: #758293;
     &::before {
       content: "\2714";
     }
