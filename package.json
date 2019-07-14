@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "electron-store": "^4.0.0",
-    "print-js": "^1.0.61",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
