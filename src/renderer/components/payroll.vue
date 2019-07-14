@@ -2,9 +2,10 @@
   <div class="overview">
     <div class="overview__titlebar">
       <h1 class="overview__titlebar__text">薪資條</h1>
+      <button class="btn btn--white" @click="print">列印</button>
     </div>
     <hr>
-    <div class="payroll--container">
+    <div class="payroll--container" id="print-rayroll">
       <div class="payroll" v-for="tableData in tableDatas">
         <div class="payroll__title">
           <p class="payroll--left">{{ year }}年</p>
@@ -154,6 +155,14 @@ export default {
       } else {
         return commit
       }
+    },
+    async print () {
+      const ipc = require('electron').ipcRenderer
+      ipc.on('wrote-pdf', function (event, path) {
+        const message = `PDF 保存到: ${path}`
+        alert(message)
+      })
+      ipc.send('print-to-pdf')
     }
   },
   computed: {
@@ -186,7 +195,6 @@ export default {
       align-items: flex-start;
       align-content: flex-start;
       flex-wrap: wrap;
-      overflow-y: scroll;
       background-color: #FFF;
     }
     &--left {
@@ -212,6 +220,26 @@ export default {
     &__insurance {
       border-bottom: .015rem dashed black;
     }
+  }
+  @media print{
+    .titlebar, .leftside, .overview__titlebar, hr{
+      display: none;
+    }
+    #print-rayroll {
+      width: 100%;
+      padding: 0;
+      display: block;
+    }
+    .overview {
+      width: 21cm;
+      min-height: 29.7cm;
+    }
+    .payroll {
+      vertical-align : top;
+      display: inline-block;
+      page-break-inside: avoid;
+    }
+  
   }
 </style>
 
