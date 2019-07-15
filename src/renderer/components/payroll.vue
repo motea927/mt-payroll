@@ -24,8 +24,8 @@
           </template>
           <p class="payroll--left">加班費(1.33)</p>
           <p class="payroll--right">{{ overTimePay133(tableData.月薪, tableData['加班1.33時數']) }}</p>
-          <p class="payroll--left">加班費(1.67)</p>
-          <p class="payroll--right">{{ overTimePay166(tableData.月薪, tableData['加班1.67時數']) }}</p>
+          <p class="payroll--left">加班費(1.66)</p>
+          <p class="payroll--right">{{ overTimePay166(tableData.月薪, tableData['加班1.66時數']) }}</p>
           <template v-if="tableData['全勤獎金'] != 0">
             <p class="payroll--left">全勤獎金</p>
             <p class="payroll--right">{{ tableData['全勤獎金'] }}</p>
@@ -81,8 +81,8 @@
           <p class="payroll--right">{{ tableData['應到天數'] }}</p>
           <p class="payroll--left">加班時數(1.33)</p>
           <p class="payroll--right">{{ tableData['加班1.33時數'] }}</p>
-          <p class="payroll--left">加班時數(1.67)</p>
-          <p class="payroll--right">{{ tableData['加班1.67時數'] }}</p>
+          <p class="payroll--left">加班時數(1.66)</p>
+          <p class="payroll--right">{{ tableData['加班1.66時數'] }}</p>
         </div>
         <div class="payroll__commit">
           <p>備註</p>
@@ -137,7 +137,7 @@ export default {
       return days * 50
     },
     subtotal (tableData) {
-      let sum = parseInt(tableData['月薪']) + this.overTimePayPerDay(tableData.月薪, tableData['加班天數(外勞)']) + this.overTimePay133(tableData.月薪, tableData['加班1.33時數']) + this.overTimePay166(tableData.月薪, tableData['加班1.67時數']) + parseInt(tableData['全勤獎金']) + this.mealExpenses(tableData['伙食天數']) + this.commutingCost(tableData['交通天數']) + parseInt(tableData['證照']) + parseInt(tableData['戒菸費']) + parseInt(tableData['點心費'])
+      let sum = parseInt(tableData['月薪']) + this.overTimePayPerDay(tableData.月薪, tableData['加班天數(外勞)']) + this.overTimePay133(tableData.月薪, tableData['加班1.33時數']) + this.overTimePay166(tableData.月薪, tableData['加班1.66時數']) + parseInt(tableData['全勤獎金']) + this.mealExpenses(tableData['伙食天數']) + this.commutingCost(tableData['交通天數']) + parseInt(tableData['證照']) + parseInt(tableData['戒菸費']) + parseInt(tableData['點心費'])
       for (let i = 0; i < this.extColumnsArrs.length; i++) {
         let extPrice = parseInt(tableData[this.extColumnsArrs[i]])
         sum += extPrice
@@ -230,6 +230,8 @@ export default {
       width: 100%;
       padding: 0;
       display: block;
+      text-align: center;
+      padding: .2rem;
     }
     .overview {
       width: 21cm;

@@ -57,7 +57,7 @@ ipcMain.on('print-to-pdf', function (event, arg) {
   })
   if (pdfPath) {
     const win = BrowserWindow.fromWebContents(event.sender)
-    win.webContents.printToPDF({printBackground: true, pageSize: 'A4', marginsType: 2, printSelectionOnly: false}, function (error, data) {
+    win.webContents.printToPDF({printBackground: true, pageSize: 'A4', marginsType: 0, printSelectionOnly: false}, function (error, data) {
       if (error) throw error
       fs.writeFile(pdfPath, data, function (error) {
         if (error) {

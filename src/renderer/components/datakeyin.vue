@@ -160,7 +160,7 @@ export default {
         {field: '應到天數', title: '應到天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '加班天數(外勞)', title: '加班天數(外勞)', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '加班1.33時數', title: '加班1.33時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '加班1.67時數', title: '加班1.67時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
+        {field: '加班1.66時數', title: '加班1.66時數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '全勤獎金', title: '全勤獎金', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '伙食天數', title: '伙食天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '交通天數', title: '交通天數', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
