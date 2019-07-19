@@ -27,8 +27,8 @@ export default new Router({
       component: require('@/components/datakeyin').default
     },
     {
-      path: '/payroll/:date',
-      component: require('@/components/payroll').default
+      path: '/payrolls/:date',
+      component: require('@/components/payrolls/payrolls.vue').default
     }
   ]
 })

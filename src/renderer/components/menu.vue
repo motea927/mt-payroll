@@ -19,7 +19,7 @@
     </div>
     </router-link>
 
-    <router-link :to="{path: '/payroll/' + currentDate}">
+    <router-link :to="{path: '/payrolls/' + currentDate}">
     <div class="menu--btn">
       <p>薪資條</p>
     </div>
