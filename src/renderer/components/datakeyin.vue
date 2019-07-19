@@ -147,6 +147,13 @@ export default {
       } else {
         return false
       }
+    },
+    warningFormatter (rowData, rowIndex, pagingIndex, field) {
+      const num = rowData[field]
+      if (num > 0) {
+        return '<span style="border-bottom: .02rem red solid;height: 100%;width: 100%;">' + (num) + '</span>'
+      }
+      return (num)
     }
   },
   data () {
@@ -167,9 +174,9 @@ export default {
         {field: '證照', title: '證照', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '戒菸費', title: '戒菸費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
         {field: '點心費', title: '點心費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '勞保費', title: '勞保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '健保費', title: '健保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
-        {field: '仲介費', title: '仲介費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true},
+        {field: '勞保費', title: '勞保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true, formatter: this.warningFormatter},
+        {field: '健保費', title: '健保費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true, formatter: this.warningFormatter},
+        {field: '仲介費', title: '仲介費', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, isEdit: true, formatter: this.warningFormatter},
         {field: '備註', title: '備註', width: 40, titleAlign: 'center', columnAlign: 'center', isResize: true, componentName: 'table-commit'}
       ],
       date: 'null'
@@ -211,11 +218,6 @@ Vue.component('table-commit', {
     },
     index: {
       type: Number
-    }
-  },
-  data () {
-    return {
-      gg: '1234你說藍色是你最愛的顏色'
     }
   },
   methods: {

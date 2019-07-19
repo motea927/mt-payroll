@@ -43,6 +43,8 @@
 <style lang="scss">
 
   .titlebar {
+    z-index: 100;
+    position: fixed;
     display: flex;
     align-items: center;
     height: .3rem;

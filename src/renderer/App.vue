@@ -50,15 +50,22 @@
   }
   main {
     display: flex;
-    min-height: calc(100vh - .3rem);
     background-color: #ffffff;
+    min-height: 100%;
+    z-index: 50;
     /*justify-content: space-between;*/
+  }
+  #app {
+    height: 100%;
   }
   .leftside {
     width: 1.7rem;
   }
   .rightside {
     width: calc(100% - 1.7rem);
+  }
+  .leftside, .rightside {
+    padding-top: .3rem;
   }
   .close {
     display: inline-block;
