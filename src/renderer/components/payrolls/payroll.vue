@@ -71,6 +71,10 @@
         <p class="payroll--right">{{ staff['出勤天數'] }}</p>
         <p class="payroll--left">應到天數</p>
         <p class="payroll--right">{{ staff['應到天數'] }}</p>
+        <template v-if="staff['加班天數(外勞)'] != 0">
+          <p class="payroll--left">加班天數</p>
+          <p class="payroll--right">{{ staff['加班天數(外勞)'] }}</p>
+        </template>
         <p class="payroll--left">加班時數(1.33)</p>
         <p class="payroll--right">{{ staff['加班1.33時數'] }}</p>
         <p class="payroll--left">加班時數(1.66)</p>

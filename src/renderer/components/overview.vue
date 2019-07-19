@@ -4,6 +4,8 @@
       <h1 class="overview__titlebar__text">概況</h1>
       <button class="btn btn--blue" @click="addDate">新增年月 +</button>
       <button class="btn btn--white" @click="clearAllData">清除所有</button>
+      <button class="btn btn--white" @click="saveData">備份</button>
+      <button class="btn btn--white" @click="loadData">還原</button>
     </div>
     <hr class="hr--one">
     <v-table
@@ -28,28 +30,7 @@ import bus from '../eventBus'
 import store from '../electronStore'
 export default {
   mounted () {
-    const database = store.get('database')
-
-    if (!database || Object.keys(database).length === 0) {
-      this.noDataAlert()
-      return
-    }
-    for (const date in database) {
-      this.tableData.unshift({
-        'date': date,
-        'delete': '',
-        'save': ''
-      })
-    }
-    if (this.$route.params.date) {
-      const routeDate = this.$route.params.date
-      for (let i = 0; i < this.tableData.length; i++) {
-        if (this.tableData[i].date === routeDate) {
-          this.currentDateIndex = i
-        }
-      }
-    }
-    this.emitChangedDate()
+    this.loadLocalData()
   },
   data () {
     return {
@@ -120,6 +101,46 @@ export default {
     clearAllData () {
       this.tableData = []
       store.delete('database')
+      this.emitChangedDate()
+    },
+    async saveData () {
+      const localDatabase = store.get('database')
+      if (!localDatabase || Object.keys(localDatabase).length === 0) {
+        return
+      }
+      const saveData = JSON.stringify(JSON.stringify(localDatabase))
+      await this.$http.put('data.json', saveData)
+      this.$swal('成功', '資料備份成功!', 'success')
+    },
+    async loadData () {
+      const data = await Vue.http.get('data.json')
+      const localData = JSON.parse(data.body)
+      store.set('database', localData)
+      this.tableData = []
+      this.loadLocalData()
+      this.$swal('成功', '資料還原成功!', 'success')
+    },
+    loadLocalData () {
+      const database = store.get('database')
+      if (!database || Object.keys(database).length === 0) {
+        this.noDataAlert()
+        return
+      }
+      for (const date in database) {
+        this.tableData.unshift({
+          'date': date,
+          'delete': '',
+          'save': ''
+        })
+      }
+      if (this.$route.params.date) {
+        const routeDate = this.$route.params.date
+        for (let i = 0; i < this.tableData.length; i++) {
+          if (this.tableData[i].date === routeDate) {
+            this.currentDateIndex = i
+          }
+        }
+      }
       this.emitChangedDate()
     }
   }
