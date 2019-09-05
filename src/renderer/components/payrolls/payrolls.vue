@@ -7,11 +7,13 @@
     
     <hr class="hr--one">
     <div class="payroll--container" id="print-rayroll">
-      <app-payroll v-for="tableData in tableDatas" 
+      <app-payroll v-for="(tableData, index) in tableDatas" 
                   :staff="tableData"
+                  :staffIndex="index"
                   :extColumnsArrs="extColumnsArrs"
                   :year="year"
-                  :month="month">
+                  :month="month"
+                  @delData="delData">
       </app-payroll>
     </div>
     
@@ -54,6 +56,9 @@ export default {
       })
       ipc.send('print-to-pdf', this.$route.params.date)
       // ipc.send('select-path')
+    },
+    delData (index) {
+      this.tableDatas.splice(index, 1)
     }
   },
   computed: {
@@ -76,6 +81,7 @@ export default {
 
 <style lang="scss">
   .payroll {
+    position: relative;
     font-size: .12rem;
     width: 2.251rem;
     margin: .1rem;
@@ -87,6 +93,19 @@ export default {
       align-content: flex-start;
       flex-wrap: wrap;
       background-color: #FFF;
+    }
+    &--delete::before {
+      display: none;
+      position: absolute;
+      top: -.2rem;
+      right: -.12rem;
+      content: '\2716';
+      color: red;
+      font-size: .25rem;
+      cursor: pointer;
+    }
+    &:hover > &--delete::before {
+      display: block;
     }
     &--left {
       display: inline-block;
@@ -120,7 +139,7 @@ export default {
       width: 100%;
       padding: 0;
       display: block;
-      text-align: center;
+      text-align: left;
       padding: .2rem;
     }
     .overview {

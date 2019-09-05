@@ -1,5 +1,6 @@
 <template>
   <div class="payroll">
+    <div class="payroll--delete" @click="$emit('delData', staffIndex)"></div>
     <div class="payroll__title">
       <p class="payroll--left">{{ year }}年</p>
       <p class="payroll--right">{{ month }}月</p>
@@ -81,7 +82,7 @@
         <p class="payroll--right">{{ staff['加班1.66時數'] }}</p>
       </div>
       <div class="payroll__commit">
-        <p>備註</p>
+        <p style="height: 100%; text-align:left;">備註</p>
         <p class="payroll--full">{{ replaceCommit }}</p>
       </div>
   </div>
@@ -89,7 +90,7 @@
 
 <script>
   export default {
-    props: ['staff', 'extColumnsArrs', 'year', 'month'],
+    props: ['staff', 'staffIndex', 'extColumnsArrs', 'year', 'month'],
     computed: {
       overTimePayPerDay () {
         const monthSalary = this.toNum(this.staff['月薪'])
