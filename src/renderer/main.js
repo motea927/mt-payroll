@@ -11,7 +11,7 @@ Vue.component(VTable.name, VTable)
 Vue.component(VPagination.name, VPagination)
 Vue.use(VueSwal)
 Vue.use(VueResource)
-Vue.http.options.root = 'Your Firebase API'
+Vue.http.options.root = 'your fibase api'
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 

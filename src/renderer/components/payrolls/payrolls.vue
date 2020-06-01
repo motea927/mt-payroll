@@ -13,6 +13,7 @@
                   :extColumnsArrs="extColumnsArrs"
                   :year="year"
                   :month="month"
+                  :key="index"
                   @delData="delData">
       </app-payroll>
     </div>
